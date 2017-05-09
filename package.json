@@ -1,0 +1,50 @@
+{
+  "name": "tree-select",
+  "version": "0.0.0",
+  "description": "Customizable dropdown with a tree of options",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "npm run lint && webpack -p && rm -rf dist/dev",
+    "format": "tsfmt --replace",
+    "lint": "tsc --noEmit && tsfmt --verify",
+    "start": "webpack-dev-server --config dev/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/citrusbyte/tree-select.git"
+  },
+  "keywords": [
+    "dropdown",
+    "select",
+    "tree",
+    "multiple",
+    "citrusbyte"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/citrusbyte/tree-select/issues"
+  },
+  "homepage": "https://github.com/citrusbyte/tree-select#readme",
+  "dependencies": {
+    "@types/react": "^15.0.24",
+    "@types/react-dom": "^15.5.0",
+    "@types/react-onclickoutside": "^5.7.3",
+    "react-onclickoutside": "^5.11.1"
+  },
+  "peerDependencies": {
+    "react": "^15",
+    "react-dom": "^15"
+  },
+  "devDependencies": {
+    "@types/react-addons-perf": "^0.14.18",
+    "react": "^15.5.4",
+    "react-addons-perf": "^15.4.2",
+    "react-dom": "^15.5.4",
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.3.2",
+    "typescript-formatter": "^5.2.0",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
+  }
+}
