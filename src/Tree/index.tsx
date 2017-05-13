@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { Item, Items } from '..';
+import { exists, Item, Items } from '..';
+import { matches } from './i18n'
 import Branch from './Branch';
 
 export { matches } from './i18n';
@@ -13,6 +14,9 @@ export interface Props {
     treeItem?: string;
     treeItemLabel?: string;
   }
+  customContent?: {
+    noResults?: React.ReactElement<{}>;
+  }
   data: Items;
   filter: string | null;
   labelTop?: (level: number) => number;
@@ -21,8 +25,17 @@ export interface Props {
 }
 
 export default function Tree(props: Props) {
+  const customContent = props.customContent || {};
   const classes = props.classNames || {};
   const labelTop = props.labelTop || (() => 0);
+
+  const filter = props.filter;
+  if (filter && !exists(props.data, item => matches(item, filter))) {
+    return <div className={classes.tree}>
+      {customContent.noResults || <div>No results</div>}
+    </div>;
+  }
+
   return <div className={classes.tree}>
     <Branch
       classNames={{

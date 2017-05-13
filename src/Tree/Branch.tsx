@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { exists } from '../lib';
+import { exists } from '..';
 import { Item, Items } from '..';
 import { highlightedName, matches } from './i18n';
 

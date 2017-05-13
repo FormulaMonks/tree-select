@@ -17,6 +17,9 @@ export interface TreeSelectProps {
     valueBox?: string;
     values?: string;
   }
+  customContent?: {
+    noResults?: React.ReactElement<{}>;
+  }
   data: Item[];
   labelTop?: (level: number) => number;
   onChange: (value: Item[]) => void;

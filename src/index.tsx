@@ -16,5 +16,6 @@ export type Item = {
 };
 export type Items = Item[];
 
+export * from './lib';
 export { Item as PublicItem, TreeSelectProps } from './public';
 export { default as TreeSelect } from './TreeSelect';
