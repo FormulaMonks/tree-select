@@ -5,7 +5,7 @@
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "npm run lint && webpack -p && rm -rf dist/dev",
+    "build": "npm run lint && webpack && rm -rf dist/dev",
     "format": "tsfmt --replace",
     "lint": "tsc --noEmit && tsfmt --verify",
     "start": "webpack-dev-server --config dev/webpack.config.js"
