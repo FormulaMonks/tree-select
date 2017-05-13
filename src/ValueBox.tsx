@@ -16,7 +16,7 @@ export interface Props {
 };
 
 
-const removeLast = function(props: Props) {
+const handleKey = function(props: Props) {
   return function(e: React.KeyboardEvent<{}>) {
     if (e.key === 'Backspace' && !props.filter)
       props.onRemove(props.value[props.value.length - 1])
@@ -51,7 +51,7 @@ export default function ValueBox(props: Props) {
         display: 'inline-block'
       }}>
         <input type="search" value={props.filter || ''}
-          onKeyDown={removeLast(props)}
+          onKeyDown={handleKey(props)}
           onChange={e => props.onFilter(e.target.value)}
           ref={props.inputRef}
           style={{
