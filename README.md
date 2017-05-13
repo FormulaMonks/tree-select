@@ -4,6 +4,13 @@ A select that allows the user to choose multiple options from a tree of options.
 
 ## Usage
 
+Install with `npm` and import as a named import using the syntax of your choice:
+
+```js
+import { TreeSelect } from 'tree-select';
+var TreeSelect = require('tree-select').TreeSelect;
+```
+
 There are three required props on the component: `data`, the actual contents of the tree; and `onChange` and `value` to control the contents. This is the simplest usage of the component:
 
 ```jsx

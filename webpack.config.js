@@ -2,9 +2,10 @@ const path = require("path");
 
 module.exports = {
   devtool: "source-map",
-  entry: path.join(__dirname, "src", "index.tsx"),
+  entry: path.join(__dirname, "src", "public.ts"),
   externals: {
     react: true,
+    "react-dom": true,
     "react-onclickoutside": true
   },
   module: {
@@ -32,7 +33,6 @@ module.exports = {
   },
   output: {
     filename: "src/index.js",
-    library: "treeSelect",
     libraryTarget: "commonjs",
     path: path.resolve(__dirname, "dist")
   },

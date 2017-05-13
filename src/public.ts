@@ -31,4 +31,4 @@ export interface TreeSelectProps {
   value: Item[];
 }
 
-export { TreeSelect as default } from '.';
+export { TreeSelect } from '.';

@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 import * as Perf from 'react-addons-perf';
 (window as any).Perf = Perf;
 
-import TreeSelect from '../src/public';
+import { TreeSelect } from '../src/public';
 
 interface Item { name: string, children?: Item[] };
 
