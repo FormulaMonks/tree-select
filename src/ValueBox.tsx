@@ -3,16 +3,16 @@ import * as React from 'react';
 import { Item, Items } from '.';
 
 export interface Props {
+  classNames?: {
+    filterInput?: string;
+    valueBox?: string;
+    values?: string;
+  }
   filter: string | null;
   inputRef?: (input: HTMLInputElement) => void;
   onAttemptToAddFiltered: () => void;
   onFilter: (s: string) => void;
   onRemove: (item: Item) => void;
-  style?: React.CSSProperties;
-  styles?: {
-    filterInput?: React.CSSProperties;
-    values?: React.CSSProperties;
-  }
   value: Items;
 };
 
@@ -27,40 +27,25 @@ const handleKey = function(props: Props) {
 }
 
 export default function ValueBox(props: Props) {
-  const styles = props.styles || {};
-  return <div>
-    <ul style={{
-      margin: 0,
-      padding: 0,
-      ...props.style,
-    }}>
+  const classes = props.classNames || {};
+  return <div className={classes.valueBox}>
+    <ul style={{ margin: 0, padding: 0 }}>
       {props.value.map(v =>
-        <li key={v.reactKey} style={{
-          display: 'inline-block'
-        }}>
-          <button onClick={() => props.onRemove(v)} style={{
-            background: 'none',
-            border: 0,
-            cursor: 'pointer',
-            font: 'inherit',
-            marginRight: 7,
-            ...styles.values
-          }}>
+        <li key={v.reactKey} style={{ display: 'inline-block' }}>
+          <button className={classes.values} onClick={() => props.onRemove(v)}>
             {v.label}
           </button>
         </li>
       )}
-      <li style={{
-        display: 'inline-block'
-      }}>
-        <input type="search" value={props.filter || ''}
+      <li style={{ display: 'inline-block' }}>
+        <input
+          className={classes.filterInput}
+          type="search"
+          value={props.filter || ''}
           onKeyDown={handleKey(props)}
           onChange={e => props.onFilter(e.target.value)}
           ref={props.inputRef}
-          style={{
-            font: 'inherit',
-            ...styles.filterInput
-          }} />
+          />
       </li>
     </ul>
   </div>

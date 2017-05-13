@@ -7,12 +7,21 @@ export interface Item {
 };
 
 export interface TreeSelectProps {
+  classNames?: {
+    filterInput?: string;
+    tree?: string;
+    treeBranch?: string;
+    treeCheckbox?: string;
+    treeItem?: string;
+    treeItemLabel?: string;
+    valueBox?: string;
+    values?: string;
+  }
   data: Item[];
   labelTop?: (level: number) => number;
   onChange: (value: Item[]) => void;
   styles?: {
     filterInput?: React.CSSProperties;
-    tree?: React.CSSProperties;
     valueBox?: React.CSSProperties;
     values?: React.CSSProperties;
   }

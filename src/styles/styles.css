@@ -1,0 +1,47 @@
+.filterInput {
+  border: 0;
+  font: inherit;
+}
+
+.tree {
+  border: 1px solid black;
+  max-height: 500px;
+  overflow: auto;
+  position: absolute;
+  width: 400px;
+}
+
+.treeBranch {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.treeItem {
+  margin-left: 25px;
+}
+.treeItem[data-level="0"] {
+  margin-left: 0;
+}
+
+.treeItemLabel {
+  background-color: white;
+  cursor: pointer;
+  display: block;
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+.valueBox {
+  border: 1px solid black;
+  width: 400px;
+}
+
+.values {
+  background-color: hsl(0, 0%, 95%);
+  border: 1px solid gray;
+  border-radius: 3px;
+  cursor: pointer;
+  font: inherit;
+  margin-right: 3px;
+}

@@ -4,9 +4,6 @@ import { exists } from '../lib';
 import { Item, Items } from '..';
 import { highlightedName, matches } from './i18n';
 
-const sticky = navigator.userAgent.indexOf('Chrome') > -1
-  ? 'sticky' : '-webkit-sticky' as 'sticky';
-
 const ItemName = function(props: { item: Item, filter: string | null }) {
   const { item, filter } = props;
   if (!filter || !matches(item, filter)) {
@@ -16,6 +13,12 @@ const ItemName = function(props: { item: Item, filter: string | null }) {
 };
 
 export interface Props {
+  classNames?: {
+    treeBranch?: string;
+    treeCheckbox?: string;
+    treeItem?: string;
+    treeItemLabel?: string;
+  }
   data: Items;
   filter: string | null;
   labelTop: (level: number) => number;
@@ -25,29 +28,25 @@ export interface Props {
 };
 
 export default function Branch(props: Props): React.ReactElement<Props> {
+  const classes = props.classNames || {};
   const { filter, labelTop, level, onAdd, onRemove } = props;
 
-  return <ul style={{
-    listStyleType: 'none',
-    margin: 0,
-    padding: 0
-  }}>
+  return <ul className={classes.treeBranch}>
     {props.data.map(function(item) {
       if (filter && !matches(item, filter) && !exists(item.children, i => matches(i, filter)))
         return null;
-      return <li key={item.reactKey} style={{
-        marginLeft: level === 0 ? 0 : 25
-      }}>
-        <label style={{
-          backgroundColor: 'white',
-          cursor: 'pointer',
-          display: 'block',
-          position: sticky,
+      return <li
+        className={classes.treeItem}
+        data-level={level}
+        key={item.reactKey}>
+        <label className={classes.treeItemLabel} style={{
           top: labelTop(level),
           zIndex: 88 - level,
         }}>
           {!filter || matches(item, filter)
-            ? <input type="checkbox"
+            ? <input
+              className={classes.treeCheckbox}
+              type="checkbox"
               checked={item.selected}
               onChange={e => e.target.checked ? onAdd(item) : onRemove(item)} />
             : null}

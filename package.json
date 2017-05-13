@@ -38,9 +38,11 @@
   },
   "devDependencies": {
     "@types/react-addons-perf": "^0.14.18",
+    "css-loader": "^0.28.1",
     "react": "^15.5.4",
     "react-addons-perf": "^15.4.2",
     "react-dom": "^15.5.4",
+    "style-loader": "^0.17.0",
     "ts-loader": "^2.0.3",
     "typescript": "^2.3.2",
     "typescript-formatter": "^5.2.0",

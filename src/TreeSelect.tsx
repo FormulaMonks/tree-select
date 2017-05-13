@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Item, Items, PublicItem, TreeSelectProps as Props } from '.';
 import { exists, findAll, map, markSelected, normalizeType } from './lib';
+import { addOurStyles } from './styles';
 import FocusHandler from './FocusHandler';
 import Tree, { matches } from './Tree';
 import ValueBox from './ValueBox';
@@ -67,30 +68,37 @@ export default class TreeSelect extends React.Component<Props, State> {
   }
 
   public render() {
-    const styles = this.props.styles || {};
+    const classes = addOurStyles(this.props.classNames || {});
     const items = prepareItems(this.props.data, this.props.value);
     const onRemove = (item: Item) => this.reportChanged(deselect(items, item));
     return <FocusHandler onClick={inside => this.setState({ treeVisible: inside })}>
       <ValueBox
+        classNames={{
+          filterInput: classes.filterInput,
+          valueBox: classes.valueBox,
+          values: classes.values,
+        }}
         filter={this.state.filter}
         inputRef={input => this.filterInput = input}
         onAttemptToAddFiltered={() => this.attemptToAddFiltered(items)}
         onFilter={s => this.setState({ filter: s || null })}
         onRemove={onRemove}
-        style={styles.valueBox}
-        styles={{
-          filterInput: styles.filterInput,
-          values: styles.values
-        }}
         value={findAll(items, i => i.selected, { skipNestedResults: true })}
       />
       {this.state.treeVisible &&
-        <Tree data={items}
+        <Tree
+          classNames={{
+            tree: classes.tree,
+            treeBranch: classes.treeBranch,
+            treeCheckbox: classes.treeCheckbox,
+            treeItem: classes.treeItem,
+            treeItemLabel: classes.treeItemLabel,
+          }}
+          data={items}
           filter={this.state.filter}
           labelTop={this.props.labelTop}
           onAdd={item => this.reportChanged(select(items, item))}
           onRemove={onRemove}
-          style={styles.tree}
         />
       }
     </FocusHandler>;

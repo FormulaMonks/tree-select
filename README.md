@@ -42,6 +42,27 @@ The component is only available as a [controlled component](https://facebook.git
 
 The value you provide in `value` and receive in `onChange` is a flat array of objects from `data`.
 
+## Styling
+
+Default styles on the dropdown are purposefully spartan. Style in accordance to your application using the ability to set custom class names on components:
+
+```jsx
+<TreeSelect classNames={{
+  filterInput: '',
+  tree: '',
+  treeBranch: '',
+  treeCheckbox: '',
+  treeItem: '',
+  treeItemLabel: '',
+  valueBox: '',
+  values: '',
+}
+```
+
+It is recommended to load the styles using `css-loader` with [modules enabled](https://github.com/webpack-contrib/css-loader/blob/fe4cf7aba6bf67d2403a8d44d0ea010e4c36ba90/README.md#modules).
+
+The default styles will not be changed without bumping a major version number. 
+
 # About Citrusbyte
 
 ![Citrusbyte](http://i.imgur.com/W6eISI3.png)

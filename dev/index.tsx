@@ -34,25 +34,6 @@ const render = function(value: Item[]) {
   ReactDOM.render(<TreeSelect
     data={data}
     onChange={v => render(v)}
-    styles={{
-      filterInput: {
-        border: 0,
-      },
-      tree: {
-        border: '1px solid black',
-        width: 400
-      },
-      valueBox: {
-        border: '1px solid black',
-        width: 400
-      },
-      values: {
-        border: '1px solid gray',
-        borderRadius: 3,
-        backgroundColor: 'hsl(0, 0%, 95%)',
-        marginRight: 3,
-      },
-    }}
     value={value}
   />, document.getElementById('demo'));
 };

@@ -8,7 +8,27 @@ module.exports = {
     "react-onclickoutside": true
   },
   module: {
-    rules: [{ test: /\.tsx?$/, loader: "ts-loader" }]
+    rules: [
+      { test: /\.tsx?$/, loader: "ts-loader" },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader",
+            options: {
+              insertAt: "top"
+            }
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              localIdentName: "[local]--[hash:base64:5]"
+            }
+          }
+        ]
+      }
+    ]
   },
   output: {
     filename: "src/index.js",
