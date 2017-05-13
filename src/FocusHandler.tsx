@@ -1,6 +1,17 @@
 import * as React from 'react';
 import * as onClickOutside from 'react-onclickoutside';
 
+const elementKeepsUserFocus = function(el: HTMLElement){
+  if (el.tagName.toLowerCase() === 'input') {
+    const input = el as HTMLInputElement;
+    return [
+      'radio', 'range', 'file', 'submit',
+      'image', 'button', 'reset', 'checkbox'
+    ].indexOf(input.type.toLowerCase()) === -1;
+  }
+  return ['textarea'].indexOf(el.tagName.toLowerCase()) > -1;
+};
+
 export class _FocusHandler extends React.Component<{ onClick: (inside: boolean) => void }, {}>{
   public handleClickOutside() {
     this.props.onClick(false);
@@ -9,7 +20,10 @@ export class _FocusHandler extends React.Component<{ onClick: (inside: boolean) 
     return <div
       onClick={() => this.props.onClick(true)}
       onFocus={() => this.props.onClick(true)}
-      onKeyUp={e => { if (e.key === 'Escape') this.props.onClick(false) }}
+      onKeyDown={e => {
+        if (e.key === 'Escape' && !elementKeepsUserFocus(e.target as any))
+          this.props.onClick(false)
+      }}
     >
       {this.props.children}
     </div>;
