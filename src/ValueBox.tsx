@@ -6,6 +6,11 @@ export interface Props {
   filter: string | null;
   onFilter: (s: string) => void;
   onRemove: (item: Item) => void;
+  style?: React.CSSProperties;
+  styles?: {
+    filterInput?: React.CSSProperties;
+    values?: React.CSSProperties;
+  }
   value: Items;
 };
 
@@ -18,31 +23,39 @@ const removeLast = function(props: Props) {
 }
 
 export default function ValueBox(props: Props) {
-  const liStyle = {
-    display: 'inline-block',
-    marginRight: 10,
-  };
+  const styles = props.styles || {};
   return <div>
     <ul style={{
       margin: 0,
       padding: 0,
+      ...props.style,
     }}>
       {props.value.map(v =>
-        <li key={v.reactKey} style={liStyle}>
+        <li key={v.reactKey} style={{
+          display: 'inline-block'
+        }}>
           <button onClick={() => props.onRemove(v)} style={{
             background: 'none',
             border: 0,
             cursor: 'pointer',
-            font: 'inherit'
+            font: 'inherit',
+            marginRight: 7,
+            ...styles.values
           }}>
             {v.label}
           </button>
         </li>
       )}
-      <li style={liStyle}>
+      <li style={{
+        display: 'inline-block'
+      }}>
         <input type="search" value={props.filter || ''}
           onKeyDown={removeLast(props)}
-          onChange={e => props.onFilter(e.target.value)} />
+          onChange={e => props.onFilter(e.target.value)}
+          style={{
+            font: 'inherit',
+            ...styles.filterInput
+          }} />
       </li>
     </ul>
   </div>

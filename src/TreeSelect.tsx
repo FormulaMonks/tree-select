@@ -54,6 +54,11 @@ export default class TreeSelect extends React.Component<Props, State> {
         filter={this.state.filter}
         onFilter={s => this.setState({ filter: s || null })}
         onRemove={onRemove}
+        style={styles.valueBox}
+        styles={{
+          filterInput: styles.filterInput,
+          values: styles.values
+        }}
         value={findAll(items, i => i.selected, { skipNestedResults: true })}
       />
       {this.state.treeVisible &&
