@@ -4,6 +4,7 @@ import { Item, Items } from '.';
 
 export interface Props {
   filter: string | null;
+  inputRef?: (input: HTMLInputElement) => void;
   onFilter: (s: string) => void;
   onRemove: (item: Item) => void;
   style?: React.CSSProperties;
@@ -52,6 +53,7 @@ export default function ValueBox(props: Props) {
         <input type="search" value={props.filter || ''}
           onKeyDown={removeLast(props)}
           onChange={e => props.onFilter(e.target.value)}
+          ref={props.inputRef}
           style={{
             font: 'inherit',
             ...styles.filterInput

@@ -40,10 +40,17 @@ const deselect = function(items: Items, itemToDeselect: Item): Items {
 };
 
 export default class TreeSelect extends React.Component<Props, State> {
+  private filterInput: HTMLInputElement | null;
+
   state = {
     filter: null,
     treeVisible: false,
   };
+
+  public componentDidUpdate(_: Props, prevState: State) {
+    if (this.state.treeVisible && !prevState.treeVisible && this.filterInput)
+      this.filterInput.focus();
+  }
 
   public render() {
     const styles = this.props.styles || {};
@@ -52,6 +59,7 @@ export default class TreeSelect extends React.Component<Props, State> {
     return <FocusHandler onClick={inside => this.setState({ treeVisible: inside })}>
       <ValueBox
         filter={this.state.filter}
+        inputRef={input => this.filterInput = input}
         onFilter={s => this.setState({ filter: s || null })}
         onRemove={onRemove}
         style={styles.valueBox}
