@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as onClickOutside from 'react-onclickoutside';
 
-const elementKeepsUserFocus = function(el: HTMLElement){
+const elementKeepsUserFocus = function(el: HTMLElement) {
   if (el.tagName.toLowerCase() === 'input') {
     const input = el as HTMLInputElement;
     return [

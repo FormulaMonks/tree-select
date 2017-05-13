@@ -45,7 +45,7 @@ export default function ValueBox(props: Props) {
           onKeyDown={handleKey(props)}
           onChange={e => props.onFilter(e.target.value)}
           ref={props.inputRef}
-          />
+        />
       </li>
     </ul>
   </div>
