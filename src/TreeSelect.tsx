@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Item, Items, PublicItem, TreeSelectProps as Props } from '.';
 import { exists, findAll, map, markSelected, normalizeType } from './lib';
 import FocusHandler from './FocusHandler';
-import Tree from './Tree';
+import Tree, { matches } from './Tree';
 import ValueBox from './ValueBox';
 
 export interface State {
@@ -20,7 +20,12 @@ const prepareItems = function(data: PublicItem[], value: {}[]) {
 
 
 const select = function(items: Items, itemToSelect: Item): Items {
-  const clicked = (item: Item) => item.original === itemToSelect.original;
+  return selectMultiple(items, [itemToSelect]);
+};
+
+const selectMultiple = function(items: Items, itemsToSelect: Items): Items {
+  const originals = itemsToSelect.map(item => item.original);
+  const clicked = (item: Item) => originals.indexOf(item.original) > -1;
   return map(items, item => ({
     selected: item.selected || clicked(item)
     || (item.children.every(child => child.selected) && exists(item.children, clicked))
@@ -52,6 +57,15 @@ export default class TreeSelect extends React.Component<Props, State> {
       this.filterInput.focus();
   }
 
+  private attemptToAddFiltered(items: Items) {
+    const toAdd = findAll(items,
+      item => !item.selected && matches(item, this.state.filter || ''));
+    if (toAdd.length < 5) {
+      this.reportChanged(selectMultiple(items, toAdd));
+      this.setState({ filter: null });
+    }
+  }
+
   public render() {
     const styles = this.props.styles || {};
     const items = prepareItems(this.props.data, this.props.value);
@@ -60,6 +74,7 @@ export default class TreeSelect extends React.Component<Props, State> {
       <ValueBox
         filter={this.state.filter}
         inputRef={input => this.filterInput = input}
+        onAttemptToAddFiltered={() => this.attemptToAddFiltered(items)}
         onFilter={s => this.setState({ filter: s || null })}
         onRemove={onRemove}
         style={styles.valueBox}

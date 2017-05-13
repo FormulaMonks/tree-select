@@ -3,6 +3,8 @@ import * as React from 'react';
 import { Item, Items } from '..';
 import Branch from './Branch';
 
+export { matches } from './i18n';
+
 export interface Props {
   data: Items;
   filter: string | null;

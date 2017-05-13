@@ -5,6 +5,7 @@ import { Item, Items } from '.';
 export interface Props {
   filter: string | null;
   inputRef?: (input: HTMLInputElement) => void;
+  onAttemptToAddFiltered: () => void;
   onFilter: (s: string) => void;
   onRemove: (item: Item) => void;
   style?: React.CSSProperties;
@@ -20,6 +21,8 @@ const handleKey = function(props: Props) {
   return function(e: React.KeyboardEvent<{}>) {
     if (e.key === 'Backspace' && !props.filter)
       props.onRemove(props.value[props.value.length - 1])
+    if (e.key === 'Enter')
+      props.onAttemptToAddFiltered();
   }
 }
 
