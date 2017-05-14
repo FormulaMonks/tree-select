@@ -15,7 +15,7 @@ export interface Props {
     treeItemLabel?: string;
   }
   customContent?: {
-    noResults?: React.ReactElement<{}>;
+    noResults?: React.ReactChild;
   }
   data: Items;
   filter: string | null;

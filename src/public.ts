@@ -21,7 +21,7 @@ export interface TreeSelectProps {
     valueItem?: string;
   }
   customContent?: {
-    noResults?: React.ReactElement<{}>;
+    noResults?: React.ReactChild;
   }
   data: Item[];
   labelTop?: (level: number) => number;
