@@ -77,7 +77,8 @@ export default class TreeSelect extends React.Component<Props, State> {
         classNames={{
           filterBox: classes.filterBox,
           filterInput: classes.filterInput,
-          valueBox: classes.valueBox,
+          valueBox: classes.valueBox +
+          (this.state.treeVisible ? ' ' + classes.valueBoxActive : ''),
           valueButton: classes.valueButton,
           valueItem: classes.valueItem,
         }}

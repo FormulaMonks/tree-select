@@ -16,6 +16,7 @@ export interface TreeSelectProps {
     treeItem?: string;
     treeItemLabel?: string;
     valueBox?: string;
+    valueBoxActive?: string;
     valueButton?: string;
     valueItem?: string;
   }
