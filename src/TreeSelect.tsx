@@ -32,7 +32,7 @@ const selectMultiple = function(items: Items, itemsToSelect: Items): Items {
       ? map(item.children, () => ({ selected: true }))
       : item.children,
     selected: item.selected || clicked(item)
-        || (item.children.every(child => child.selected) && exists(item.children, clicked))
+    || (item.children.every(child => child.selected) && exists(item.children, clicked))
   }));
 };
 

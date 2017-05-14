@@ -33,9 +33,9 @@ export default function Branch(props: Props): React.ReactElement<Props> {
 
   const onChange = function(item: Item, selected: boolean) {
     if (item.selectable) {
-     return selected ? onAdd(item) : onRemove(item);
-   }
-   return item.children.every(child => child.selected) ? onRemove(item) : onAdd(item);
+      return selected ? onAdd(item) : onRemove(item);
+    }
+    return item.children.every(child => child.selected) ? onRemove(item) : onAdd(item);
   };
 
   return <ul className={classes.treeBranch}>
@@ -57,7 +57,7 @@ export default function Branch(props: Props): React.ReactElement<Props> {
             checked={item.selected}
             onChange={e => onChange(item, e.target.checked)}
             style={{ visibility: selectable ? 'visible' : 'hidden' }}
-            />
+          />
           <ItemName item={item} filter={filter} />
         </label>
         {item.children.length ?

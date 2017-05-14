@@ -8,7 +8,7 @@ export default function normalizeType(data: PublicItem[], parents: Items = []): 
       level: parents.length,
       original: item,
       reactKey: (parents.length ? parents[parents.length - 1].reactKey + '/' : '')
-        + (item.reactKey || index),
+      + (item.reactKey || index),
       selected: false,
       selectable: "selectable" in item ? item.selectable : true
     } as Item;
