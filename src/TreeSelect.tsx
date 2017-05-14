@@ -74,41 +74,43 @@ export default class TreeSelect extends React.Component<Props, State> {
     const onRemove = (item: Item) => this.reportChanged(deselect(items, item));
     return <FocusHandler onClick={inside => this.setState({ treeVisible: inside })}>
       {customContent.title ? customContent.title : null}
-      <ValueBox
-        classNames={{
-          filterBox: classes.filterBox,
-          filterInput: classes.filterInput,
-          valueBox: classes.valueBox +
-          (this.state.treeVisible ? ' ' + classes.valueBoxActive : ''),
-          valueButton: classes.valueButton,
-          valueItem: classes.valueItem,
-        }}
-        filter={this.state.filter}
-        inputRef={input => this.filterInput = input}
-        onAttemptToAddFiltered={() => this.attemptToAddFiltered(items)}
-        onFilter={s => this.setState({ filter: s || null })}
-        onRemove={onRemove}
-        value={findAll(items, i => i.selected, { skipNestedResults: true })}
-      />
-      {this.state.treeVisible &&
-        <Tree
+      <div className={classes.topContainer}>
+        <ValueBox
           classNames={{
-            tree: classes.tree,
-            treeBranch: classes.treeBranch,
-            treeCheckbox: classes.treeCheckbox,
-            treeItem: classes.treeItem,
-            treeItemLabel: classes.treeItemLabel,
+            filterBox: classes.filterBox,
+            filterInput: classes.filterInput,
+            valueBox: classes.valueBox +
+            (this.state.treeVisible ? ' ' + classes.valueBoxActive : ''),
+            valueButton: classes.valueButton,
+            valueItem: classes.valueItem,
           }}
-          customContent={{
-            noResults: customContent.noResults
-          }}
-          data={items}
           filter={this.state.filter}
-          labelTop={this.props.labelTop}
-          onAdd={item => this.reportChanged(select(items, item))}
+          inputRef={input => this.filterInput = input}
+          onAttemptToAddFiltered={() => this.attemptToAddFiltered(items)}
+          onFilter={s => this.setState({ filter: s || null })}
           onRemove={onRemove}
+          value={findAll(items, i => i.selected, { skipNestedResults: true })}
         />
-      }
+        {this.state.treeVisible &&
+          <Tree
+            classNames={{
+              tree: classes.tree,
+              treeBranch: classes.treeBranch,
+              treeCheckbox: classes.treeCheckbox,
+              treeItem: classes.treeItem,
+              treeItemLabel: classes.treeItemLabel,
+            }}
+            customContent={{
+              noResults: customContent.noResults
+            }}
+            data={items}
+            filter={this.state.filter}
+            labelTop={this.props.labelTop}
+            onAdd={item => this.reportChanged(select(items, item))}
+            onRemove={onRemove}
+          />
+        }
+      </div>
     </FocusHandler>;
   }
 

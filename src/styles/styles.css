@@ -9,12 +9,18 @@
   font: inherit;
 }
 
+.topContainer {
+  position: relative;
+}
+
 .tree {
   border: 1px solid black;
   border-top: 0;
+  box-sizing: border-box;
   max-height: 500px;
   overflow: auto;
   position: absolute;
+  width: 100%;
 }
 
 .treeBranch {

@@ -10,6 +10,7 @@ export interface TreeSelectProps {
   classNames?: {
     filterBox?: string;
     filterInput?: string;
+    topContainer?: string;
     tree?: string;
     treeBranch?: string;
     treeCheckbox?: string;

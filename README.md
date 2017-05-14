@@ -61,6 +61,7 @@ Style using CSS in accordance to your application using the ability to set custo
 <TreeSelect classNames={{
   filterBox: '',
   filterInput: '',
+  topContainer: '',
   tree: '',
   treeBranch: '',
   treeCheckbox: '',
