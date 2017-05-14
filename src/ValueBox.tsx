@@ -4,9 +4,11 @@ import { Item, Items } from '.';
 
 export interface Props {
   classNames?: {
+    filterBox?: string;
     filterInput?: string;
     valueBox?: string;
-    values?: string;
+    valueButton?: string;
+    valueItem?: string;
   }
   filter: string | null;
   inputRef?: (input: HTMLInputElement) => void;
@@ -29,24 +31,22 @@ const handleKey = function(props: Props) {
 export default function ValueBox(props: Props) {
   const classes = props.classNames || {};
   return <div className={classes.valueBox}>
-    <ul style={{ margin: 0, padding: 0 }}>
-      {props.value.map(v =>
-        <li key={v.reactKey} style={{ display: 'inline-block' }}>
-          <button className={classes.values} onClick={() => props.onRemove(v)}>
-            {v.label}
-          </button>
-        </li>
-      )}
-      <li style={{ display: 'inline-block' }}>
-        <input
-          className={classes.filterInput}
-          type="search"
-          value={props.filter || ''}
-          onKeyDown={handleKey(props)}
-          onChange={e => props.onFilter(e.target.value)}
-          ref={props.inputRef}
-        />
-      </li>
-    </ul>
+    {props.value.map(v =>
+      <div key={v.reactKey} className={classes.valueItem}>
+        <button className={classes.valueButton} onClick={() => props.onRemove(v)}>
+          {v.label}
+        </button>
+      </div>
+    )}
+    <div className={classes.filterBox}>
+      <input
+        className={classes.filterInput}
+        type="search"
+        value={props.filter || ''}
+        onKeyDown={handleKey(props)}
+        onChange={e => props.onFilter(e.target.value)}
+        ref={props.inputRef}
+      />
+    </div>
   </div>
 };

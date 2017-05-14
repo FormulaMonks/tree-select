@@ -8,6 +8,7 @@ export interface Item {
 
 export interface TreeSelectProps {
   classNames?: {
+    filterBox?: string;
     filterInput?: string;
     tree?: string;
     treeBranch?: string;
@@ -15,7 +16,8 @@ export interface TreeSelectProps {
     treeItem?: string;
     treeItemLabel?: string;
     valueBox?: string;
-    values?: string;
+    valueButton?: string;
+    valueItem?: string;
   }
   customContent?: {
     noResults?: React.ReactElement<{}>;

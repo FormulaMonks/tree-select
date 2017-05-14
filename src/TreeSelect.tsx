@@ -75,9 +75,11 @@ export default class TreeSelect extends React.Component<Props, State> {
     return <FocusHandler onClick={inside => this.setState({ treeVisible: inside })}>
       <ValueBox
         classNames={{
+          filterBox: classes.filterBox,
           filterInput: classes.filterInput,
           valueBox: classes.valueBox,
-          values: classes.values,
+          valueButton: classes.valueButton,
+          valueItem: classes.valueItem,
         }}
         filter={this.state.filter}
         inputRef={input => this.filterInput = input}

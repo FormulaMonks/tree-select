@@ -1,5 +1,11 @@
+.filterBox {
+  display: flex;
+  flex: 1;
+}
+
 .filterInput {
   border: 0;
+  flex: 1;
   font: inherit;
 }
 
@@ -33,9 +39,15 @@
 
 .valueBox {
   border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.values {
+.valueItem {
+  display: inline-block;
+}
+
+.valueButton {
   background-color: hsl(0, 0%, 95%);
   border: 1px solid gray;
   border-radius: 3px;
