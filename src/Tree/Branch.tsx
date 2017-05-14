@@ -42,6 +42,7 @@ export default function Branch(props: Props): React.ReactElement<Props> {
     {props.data.map(function(item) {
       if (filter && !matches(item, filter) && !exists(item.children, i => matches(i, filter)))
         return null;
+      const selectable = item.selectable && (!filter || matches(item, filter));
       return <li
         className={classes.treeItem}
         data-level={level}
@@ -50,15 +51,13 @@ export default function Branch(props: Props): React.ReactElement<Props> {
           top: labelTop(level),
           zIndex: 88 - level,
         }}>
-          {!filter || matches(item, filter)
-            ? <input
-              className={classes.treeCheckbox}
-              type="checkbox"
-              checked={item.selected}
-              onChange={e => onChange(item, e.target.checked)}
-              style={{ visibility: item.selectable ? 'visible' : 'hidden' }}
-              />
-            : null}
+          <input
+            className={classes.treeCheckbox}
+            type="checkbox"
+            checked={item.selected}
+            onChange={e => onChange(item, e.target.checked)}
+            style={{ visibility: selectable ? 'visible' : 'hidden' }}
+            />
           <ItemName item={item} filter={filter} />
         </label>
         {item.children.length ?
