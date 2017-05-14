@@ -61,7 +61,7 @@ export default class TreeSelect extends React.Component<Props, State> {
   private attemptToAddFiltered(items: Items) {
     const toAdd = findAll(items,
       item => !item.selected && matches(item, this.state.filter || ''));
-    if (toAdd.length < 5) {
+    if (toAdd.length < 11) {
       this.reportChanged(selectMultiple(items, toAdd));
       this.setState({ filter: null });
     }
