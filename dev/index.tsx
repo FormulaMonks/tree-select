@@ -33,6 +33,7 @@ const data = [
 const render = function(value: Item[]) {
   ReactDOM.render(<TreeSelect
     data={data}
+    labelTop={n => n * 19}
     onChange={v => render(v)}
     value={value}
   />, document.getElementById('demo'));

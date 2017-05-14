@@ -51,7 +51,7 @@ The value you provide in `value` and receive in `onChange` is a flat array of ob
 
 ## Styling
 
-Default looks on the dropdown are purposefully spartan. You should customize that using CSS and content replacements.
+Default looks on the dropdown are purposefully spartan. You should customize that using CSS and content replacements. There is also some work to improve sticky sections.
 
 ### CSS
 
@@ -85,6 +85,16 @@ You can modify the content the component shows. In the simplest case, you can pr
 <TreeSelect customContent={{
   noResults: <div>No results found! :-(</div>
 }} />
+```
+
+### Sticky sections
+
+By default, the top level of the tree items will be sticky: they will stay on the screen if the user is scrolling through a long list.
+
+To make all levels sticky, you need to provide a function that knows the heights of all individual items to correctly calculate the placement. For instance, if every label in your tree is 18 pixels high, use the following function:
+
+```jsx
+<TreeSelect labelTop={n => n * 18} />
 ```
 
 # About Citrusbyte
