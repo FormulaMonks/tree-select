@@ -59,6 +59,7 @@ Style using CSS in accordance to your application using the ability to set custo
 
 ```jsx
 <TreeSelect classNames={{
+  filterBox: '',
   filterInput: '',
   tree: '',
   treeBranch: '',
@@ -66,8 +67,10 @@ Style using CSS in accordance to your application using the ability to set custo
   treeItem: '',
   treeItemLabel: '',
   valueBox: '',
-  values: '',
-}
+  valueBoxActive: '',
+  valueButton: '',
+  valueItem: '',
+}} />
 ```
 
 It is recommended to load the styles using `css-loader` with [modules enabled](https://github.com/webpack-contrib/css-loader/blob/fe4cf7aba6bf67d2403a8d44d0ea010e4c36ba90/README.md#modules).
