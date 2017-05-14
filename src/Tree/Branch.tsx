@@ -47,7 +47,7 @@ export default function Branch(props: Props): React.ReactElement<Props> {
         className={classes.treeItem}
         data-level={level}
         key={item.reactKey}>
-        <label className={classes.treeItemLabel} style={{
+        <label className={classes.treeItemLabel} data-level={level} style={{
           top: labelTop(level),
           zIndex: 88 - level,
         }}>

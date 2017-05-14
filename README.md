@@ -77,7 +77,7 @@ Style using CSS in accordance to your application using the ability to set custo
 
 In addition, there are some data attributes that can narrow the styles down:
 
-* `data-level` on a `valueItem` allows to style value items depending on how deep they were in the tree.
+* `data-level` on a `treeItem`, `treeItemLabel`, and `valueItem` allows to style value items depending on how deep they were in the tree.
 
 It is recommended to load the styles using `css-loader` with [modules enabled](https://github.com/webpack-contrib/css-loader/blob/fe4cf7aba6bf67d2403a8d44d0ea010e4c36ba90/README.md#modules).
 
