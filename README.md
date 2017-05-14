@@ -83,7 +83,8 @@ You can modify the content the component shows. In the simplest case, you can pr
 
 ```jsx
 <TreeSelect customContent={{
-  noResults: <div>No results found! :-(</div>
+  noResults: <div>No results found! :-(</div>,
+  title: <h1>Choose your poison</h1>,
 }} />
 ```
 

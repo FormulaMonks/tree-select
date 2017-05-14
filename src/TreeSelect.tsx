@@ -73,6 +73,7 @@ export default class TreeSelect extends React.Component<Props, State> {
     const items = prepareItems(this.props.data, this.props.value);
     const onRemove = (item: Item) => this.reportChanged(deselect(items, item));
     return <FocusHandler onClick={inside => this.setState({ treeVisible: inside })}>
+      {customContent.title ? customContent.title : null}
       <ValueBox
         classNames={{
           filterBox: classes.filterBox,
