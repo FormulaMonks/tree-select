@@ -4,6 +4,7 @@ export interface Item {
   name: string;
   children?: Item[];
   reactKey?: string;
+  selectable?: string;
 };
 
 export interface TreeSelectProps {

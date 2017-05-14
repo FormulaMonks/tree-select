@@ -42,6 +42,7 @@ Optional fields on data objects:
 
 - `id`. A freeform field for your own tracking purposes.
 - `reactKey`. A string to uniquely identify the object amongst its siblings in case you modify `data` on the fly. Without it, the performance of modifying `data` will suffer. More in [React docs](https://facebook.github.io/react/docs/lists-and-keys.html).
+- `selectable`. A corner-case feature where you can select some items as non-selectable. A scenario where a selectable parent contains non-selectable children is at the moment not supported.
 
 ### `onChange` and `value`
 

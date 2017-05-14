@@ -28,8 +28,11 @@ const selectMultiple = function(items: Items, itemsToSelect: Items): Items {
   const originals = itemsToSelect.map(item => item.original);
   const clicked = (item: Item) => originals.indexOf(item.original) > -1;
   return map(items, item => ({
+    children: clicked(item)
+      ? map(item.children, () => ({ selected: true }))
+      : item.children,
     selected: item.selected || clicked(item)
-    || (item.children.every(child => child.selected) && exists(item.children, clicked))
+        || (item.children.every(child => child.selected) && exists(item.children, clicked))
   }));
 };
 
@@ -115,6 +118,7 @@ export default class TreeSelect extends React.Component<Props, State> {
   }
 
   private reportChanged(items: Items) {
-    this.props.onChange(findAll(items, i => i.selected).map(i => i.original) as PublicItem[]);
+    this.props.onChange(findAll(items, i => i.selected && i.selectable)
+      .map(i => i.original) as PublicItem[]);
   };
 };

@@ -13,6 +13,7 @@ export type Item = {
   level: number
   original: {}
   reactKey: string
+  selectable: boolean
   selected: boolean
 };
 export type Items = Item[];

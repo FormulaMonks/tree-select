@@ -31,6 +31,13 @@ export default function Branch(props: Props): React.ReactElement<Props> {
   const classes = props.classNames || {};
   const { filter, labelTop, level, onAdd, onRemove } = props;
 
+  const onChange = function(item: Item, selected: boolean) {
+    if (item.selectable) {
+     return selected ? onAdd(item) : onRemove(item);
+   }
+   return item.children.every(child => child.selected) ? onRemove(item) : onAdd(item);
+  };
+
   return <ul className={classes.treeBranch}>
     {props.data.map(function(item) {
       if (filter && !matches(item, filter) && !exists(item.children, i => matches(i, filter)))
@@ -48,7 +55,9 @@ export default function Branch(props: Props): React.ReactElement<Props> {
               className={classes.treeCheckbox}
               type="checkbox"
               checked={item.selected}
-              onChange={e => e.target.checked ? onAdd(item) : onRemove(item)} />
+              onChange={e => onChange(item, e.target.checked)}
+              style={{ visibility: item.selectable ? 'visible' : 'hidden' }}
+              />
             : null}
           <ItemName item={item} filter={filter} />
         </label>
