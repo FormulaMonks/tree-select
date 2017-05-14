@@ -1,14 +1,17 @@
-import { PublicItem, Items } from './lib';
+import { PublicItem, Item, Items } from './lib';
 
-export default function normalizeType(data: PublicItem[], prefix: string = ''): Items {
+export default function normalizeType(data: PublicItem[], parents: Items = []): Items {
   return data.map(function(item, index) {
-    const reactKey = (prefix ? prefix + '/' : '') + (item.reactKey || index);
-    return {
-      children: normalizeType(item.children || [], reactKey),
+    const res = {
+      children: [],
       label: item.name,
+      level: parents.length,
       original: item,
-      reactKey,
+      reactKey: (parents.length ? parents[parents.length - 1].reactKey + '/' : '')
+        + (item.reactKey || index),
       selected: false
-    };
+    } as Item;
+    res.children = normalizeType(item.children || [], parents.concat([res]));
+    return res;
   });
 };

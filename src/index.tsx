@@ -10,6 +10,7 @@
 export type Item = {
   children: Item[]
   label: string
+  level: number
   original: {}
   reactKey: string
   selected: boolean

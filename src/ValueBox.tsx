@@ -32,7 +32,7 @@ export default function ValueBox(props: Props) {
   const classes = props.classNames || {};
   return <div className={classes.valueBox}>
     {props.value.map(v =>
-      <div key={v.reactKey} className={classes.valueItem}>
+      <div key={v.reactKey} className={classes.valueItem} data-level={v.level}>
         <button className={classes.valueButton} onClick={() => props.onRemove(v)}>
           {v.label}
         </button>
