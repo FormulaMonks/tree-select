@@ -1,3 +1,7 @@
+# v1.3.0
+
+Switch to ES5 support.
+
 # v1.2.0
 
 `data-level` applied to treeItem and treeItemLabel.
