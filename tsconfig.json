@@ -12,7 +12,7 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "target": "ES6"
+    "target": "ES5"
   },
   "include": [
     "dev/",

@@ -25,7 +25,7 @@ const data = [
     i('Electronics', [i('TV'), i('Radio')])
   ]),
   i('Other stuff',
-    '.'.repeat(30).split('.').map((_, n) =>
+    new Array(30).join('.').split('.').map((_, n) =>
       i('Item ' + n))
   ),
 ];
