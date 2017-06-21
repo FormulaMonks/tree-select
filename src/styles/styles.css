@@ -1,6 +1,7 @@
 .filterBox {
   display: flex;
-  flex: 1;
+  /* Safari 10 bug http://stackoverflow.com/a/36290636 */
+  flex: 1 0 auto;
 }
 
 .filterInput {
