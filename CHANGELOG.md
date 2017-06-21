@@ -1,3 +1,7 @@
+# v1.3.1
+
+Fix wrapped items in the filter box in Safari 10.
+
 # v1.3.0
 
 Switch to ES5 support.
