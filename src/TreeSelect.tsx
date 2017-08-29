@@ -57,7 +57,11 @@ export default class TreeSelect extends React.Component<Props, State> {
   };
 
   public componentDidUpdate(_: Props, prevState: State) {
-    if (this.state.treeVisible && !prevState.treeVisible && this.filterInput)
+    const changesTriggeringFocus = [
+      this.state.treeVisible && !prevState.treeVisible,
+      this.state.filter !== prevState.filter,
+    ];
+    if (this.filterInput && changesTriggeringFocus.indexOf(true) > -1)
       this.filterInput.focus();
   }
 
