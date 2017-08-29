@@ -66,7 +66,6 @@ export default class TreeSelect extends React.Component<Props, State> {
       item => !item.selected && matches(item, this.state.filter || ''));
     if (toAdd.length < 11) {
       this.reportChanged(selectMultiple(items, toAdd));
-      this.setState({ filter: null });
     }
   }
 
@@ -120,5 +119,6 @@ export default class TreeSelect extends React.Component<Props, State> {
   private reportChanged(items: Items) {
     this.props.onChange(findAll(items, i => i.selected && i.selectable)
       .map(i => i.original) as PublicItem[]);
+    this.setState({ filter: null });
   };
 };
