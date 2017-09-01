@@ -9,7 +9,7 @@ import ValueBox from './ValueBox';
 
 export interface State {
   filter: string | null;
-  treeVisible: boolean;
+  focused: boolean;
 }
 
 const prepareItems = function(data: PublicItem[], value: {}[]) {
@@ -53,12 +53,12 @@ export default class TreeSelect extends React.Component<Props, State> {
 
   state = {
     filter: null,
-    treeVisible: false,
+    focused: false,
   };
 
   public componentDidUpdate(_: Props, prevState: State) {
     const changesTriggeringFocus = [
-      this.state.treeVisible && !prevState.treeVisible,
+      this.state.focused && !prevState.focused,
       this.state.filter !== prevState.filter,
     ];
     if (this.filterInput && changesTriggeringFocus.indexOf(true) > -1)
@@ -78,7 +78,7 @@ export default class TreeSelect extends React.Component<Props, State> {
     const customContent = this.props.customContent || {};
     const items = prepareItems(this.props.data, this.props.value);
     const onRemove = (item: Item) => this.reportChanged(deselect(items, item));
-    return <FocusHandler onClick={inside => this.setState({ treeVisible: inside })}>
+    return <FocusHandler onClick={inside => this.setState({ focused: inside })}>
       {customContent.title ? customContent.title : null}
       <div className={classes.topContainer}>
         <ValueBox
@@ -86,7 +86,7 @@ export default class TreeSelect extends React.Component<Props, State> {
             filterBox: classes.filterBox,
             filterInput: classes.filterInput,
             valueBox: classes.valueBox +
-            (this.state.treeVisible ? ' ' + classes.valueBoxActive : ''),
+            (this.state.focused ? ' ' + classes.valueBoxActive : ''),
             valueButton: classes.valueButton,
             valueItem: classes.valueItem,
           }}
@@ -97,7 +97,7 @@ export default class TreeSelect extends React.Component<Props, State> {
           onRemove={onRemove}
           value={findAll(items, i => i.selected, { skipNestedResults: true })}
         />
-        {this.state.treeVisible &&
+        {this.state.focused &&
           <Tree
             classNames={{
               tree: classes.tree,
