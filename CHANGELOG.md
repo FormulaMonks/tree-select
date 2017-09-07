@@ -1,3 +1,8 @@
+# v1.4.0
+
+Add `required` prop.
+Now clears the filter box after the user makes a selection.
+
 # v1.3.1
 
 Fix wrapped items in the filter box in Safari 10.
