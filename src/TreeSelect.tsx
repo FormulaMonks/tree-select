@@ -95,6 +95,7 @@ export default class TreeSelect extends React.Component<Props, State> {
           onAttemptToAddFiltered={() => this.attemptToAddFiltered(items)}
           onFilter={s => this.setState({ filter: s || null })}
           onRemove={onRemove}
+          required={this.props.required && this.props.value.length === 0}
           value={findAll(items, i => i.selected, { skipNestedResults: true })}
         />
         {this.state.focused &&

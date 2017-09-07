@@ -50,6 +50,16 @@ The component is only available as a [controlled component](https://facebook.git
 
 The value you provide in `value` and receive in `onChange` is a flat array of objects from `data`.
 
+## Options
+
+Use `required` to make the component trigger the native error box and prevent the ancestor `form` from submitting:
+
+```ts
+<TreeSelect
+  required
+  />
+```
+
 ## Styling
 
 Default looks on the dropdown are purposefully spartan. You should customize that using CSS and content replacements. There is also some work to improve sticky sections.

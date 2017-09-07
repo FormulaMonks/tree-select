@@ -29,6 +29,7 @@ export interface TreeSelectProps {
   data: Item[];
   labelTop?: (level: number) => number;
   onChange: (value: Item[]) => void;
+  required?: boolean;
   styles?: {
     filterInput?: React.CSSProperties;
     valueBox?: React.CSSProperties;
