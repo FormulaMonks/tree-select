@@ -15,6 +15,7 @@ export interface Props {
   onAttemptToAddFiltered: () => void;
   onFilter: (s: string) => void;
   onRemove: (item: Item) => void;
+  required?: boolean;
   value: Items;
 };
 
@@ -46,6 +47,7 @@ export default function ValueBox(props: Props) {
         onKeyDown={handleKey(props)}
         onChange={e => props.onFilter(e.target.value)}
         ref={props.inputRef}
+        required={props.required}
       />
     </div>
   </div>
